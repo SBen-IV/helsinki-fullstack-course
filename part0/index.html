@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>My test page</title>
+        <link href="styles/style.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1>My test page</h1>
+        <img src="images/firefox-logo.png" alt="My test image">
+        <p>At Mozilla, we're a global community of</p>
+
+        <ul>
+        <li>technologists</li>
+        <li>thinkers</li>
+        <li>builders</li>
+        </ul>
+
+        <p>working together. Lorem ipsum dolor sit amet,
+             consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim 
+              ad minim veniam, quis nostrud exercitation ullamco laboris 
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+              in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
+              in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <a href="http://www.mozilla.org/en-US/about/manifesto/">Mozilla manifesto</a>
+
+        <h1>Leave a message</h1>
+
+        <form action="/my-handling-form-page" method="post">
+            <ul>
+                <li>
+                    <label for="name">Nickname:</label>
+                    <input type="text" id="name" name="user_nickname">
+                </li>
+                <li>
+                    <label for="email">Email:</label>
+                    <input type="email" id="mail" name="user_email">
+                </li>
+                <li>
+                    <label for="msg">Message:</label>
+                    <textarea id="msg" name="user_message"></textarea>
+                </li>
+                <li class="button">
+                    <button type="submit">Send your message</button>
+                </li>               
+            </ul>
+        </form>        
+    </body>
+</html>

@@ -1,0 +1,18 @@
+@startuml
+
+!theme black-n-white from https://raw.githubusercontent.com/SBen-IV/plantuml-black-n-white-theme/main/theme
+
+skinparam sequenceMessageAlign center
+
+Browser -> Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+Server --> Browser: Redirection
+Browser -> Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server --> Browser: HTML-code
+Browser -> Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server --> Browser: main.css
+Browser -> Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server --> Browser: main.js
+Browser -> Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server --> Browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+
+@enduml
