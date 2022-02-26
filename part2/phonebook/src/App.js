@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Persons from './components/Persons'
 import Filter from './components/Filter'
 import Form from './components/Form'
+import Notification from './components/Notification'
 import personService from './services/persons'
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
 	const [ newName, setNewName ] = useState('')
 	const [ newNumber, setNewNumber ] = useState('')
 	const [ query, setQuery ] = useState('')
+	const [ successMessage, setSuccessMessage ] = useState(null)
 	
 	const personsShown = (query === '') ? persons :
 	 persons.filter(person => person.name.toLowerCase().match(query.toLowerCase()))
@@ -44,6 +46,8 @@ const App = () => {
 					.then(updatedPerson => {
 						setPersons(persons.map(p => p.id !== personExist.id ? p : updatedPerson))
 					})
+				
+				setSuccessMessage(`${person.name} updated successfully.`)
 			}
 		} else {
 			personService
@@ -52,10 +56,14 @@ const App = () => {
 					const newPersons = [...persons, newPerson]
 					setPersons(newPersons)
 				})
+			setSuccessMessage(`${person.name} added successfully.`)
 		}
 
 		setNewName('')
 		setNewNumber('')
+		setTimeout(() => {
+			setSuccessMessage(null)
+		}, 5000)
 	}
 
 	const removePerson = (id) => {
@@ -79,6 +87,7 @@ const App = () => {
 	return (
 		<div>
 			<h2>Phonebook</h2>
+			<Notification message={successMessage} />
 			<Filter value={query} onChange={changeQuery}></Filter>
 
 			<h3>Add new</h3>
