@@ -1,0 +1,16 @@
+PUT http://localhost:3001/api/notes/62253bd5f08c7e6e1e083218
+Content-Type: application/json
+
+{
+	"content": "HTML is easy",
+	"important": false
+}
+
+###
+PUT http://localhost:3001/api/notes/62253bd
+Content-Type: application/json
+
+{
+	"content": "asdas",
+	"important": false
+}
