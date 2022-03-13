@@ -10,7 +10,7 @@ const App = () => {
 	const [ newName, setNewName ] = useState('')
 	const [ newNumber, setNewNumber ] = useState('')
 	const [ query, setQuery ] = useState('')
-	const [ successMessage, setSuccessMessage ] = useState(null)
+	const [ notificationMessage, setNotificationMessage ] = useState(null)
 	
 	const personsShown = (query === '') ? persons :
 	 persons.filter(person => person.name.toLowerCase().match(query.toLowerCase()))
@@ -47,7 +47,10 @@ const App = () => {
 						setPersons(persons.map(p => p.id !== personExist.id ? p : updatedPerson))
 					})
 				
-				setSuccessMessage(`${person.name} updated successfully.`)
+				setNotificationMessage({
+					class: "success",
+					message: `${person.name} updated successfully.`
+				})
 			}
 		} else {
 			personService
@@ -55,14 +58,24 @@ const App = () => {
 				.then(newPerson => {
 					const newPersons = [...persons, newPerson]
 					setPersons(newPersons)
+					setNotificationMessage({
+						class: "success",
+						message: `${person.name} added successfully.`
+					})
 				})
-			setSuccessMessage(`${person.name} added successfully.`)
+				.catch(error => {
+					console.log(error.response.data.error)
+					setNotificationMessage({
+						class: "error",
+						message: `${error.response.data.error}`
+					})
+				})
 		}
 
 		setNewName('')
 		setNewNumber('')
 		setTimeout(() => {
-			setSuccessMessage(null)
+			setNotificationMessage(null)
 		}, 5000)
 	}
 
@@ -87,7 +100,7 @@ const App = () => {
 	return (
 		<div>
 			<h2>Phonebook</h2>
-			<Notification message={successMessage} />
+			<Notification notificationMessage={notificationMessage} />
 			<Filter value={query} onChange={changeQuery}></Filter>
 
 			<h3>Add new</h3>
